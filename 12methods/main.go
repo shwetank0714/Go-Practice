@@ -41,7 +41,8 @@ func main() {
 
 	myUser.GetStatus()
 	fmt.Println("my email: ", myUser.Email)
-	//myUser.changeMailShallowCopy("helloworld@go.dev.com")
+	myUser.changeMailShallowCopy("helloworld@go.dev.com")
+	fmt.Println("my email: ", myUser.Email)
 	myUser.changeMailDeepCopy("newHelloWorld@go.dev")
 
 	fmt.Println("my email: ", myUser.Email)
