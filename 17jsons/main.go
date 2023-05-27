@@ -17,7 +17,8 @@ type course struct {
 
 func main() {
 	fmt.Println("welcome to Jsons")
-	EncodeJson()
+	//EncodeJson()
+	DecodeJson()
 }
 
 func EncodeJson() {
@@ -65,4 +66,46 @@ func EncodeJson() {
 	}
 
 	fmt.Println(string(indentedJson))
+}
+
+func DecodeJson() {
+	jsonDataFromWeb := []byte(`
+	
+	{
+		"coursename": "Shwetank",
+		"Price": 234,
+		"Platform": "VsCode",
+		"Password": "kpmgDetug9099",
+		"Tags": [
+				"hello",
+				"world",
+				"how",
+				"are",
+				"you"
+		]
+	}
+	`)
+
+	var myCourse course
+
+	checkValid := json.Valid(jsonDataFromWeb)
+
+
+	if checkValid {
+		fmt.Println("Json Data Valid---")
+		json.Unmarshal(jsonDataFromWeb,&myCourse)
+
+		//fmt.Printf("%#v\n", myCourse)
+	} else{
+		fmt.Println("Json was not valid")
+	}
+
+
+	// some cases where you just want to add data to key value pair
+	// Un-Marshilling the data into a map
+
+	var myOnlineDataMap map[string]interface{}
+	json.Unmarshal(jsonDataFromWeb,&myOnlineDataMap)
+
+	fmt.Printf("%#v\n", myOnlineDataMap)
 }
